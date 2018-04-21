@@ -15,13 +15,13 @@
   out.print("Sorry, You have entered an invalid userid or password");
 }%>
 
-<form action = "verification.jsp" method = "POST">
-  Login ID: <input type = "text" name = "loginid">
+<form action="verification.jsp" method="POST">
+  Login ID: <input type="text" name="loginid">
   <br>
   <br>
-  Password: <input type = "password" name = "password">
+  Password: <input type="password" name="password">
   <br>
-  <input type = "submit" value = "Submit">
+  <input type="submit" value="Submit">
 </form>
 
 </body>

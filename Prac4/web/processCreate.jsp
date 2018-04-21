@@ -5,7 +5,9 @@
   Time: 11:05 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.PreparedStatement" %>
 <%--Load a driver to enable JDBC classes to communicate with data source--%>
 <%Class.forName("com.mysql.jdbc.Driver");%>
 <html>
@@ -16,17 +18,16 @@
 <%
     String usertoadd = request.getParameter("loginid");
     String passwordtoadd = request.getParameter("password");
-    try{
+    try {
         String connURL = "jdbc:mysql://localhost:3306/db1?user=root&password=Dickfigures123";
         Connection conn = DriverManager.getConnection(connURL);
         PreparedStatement ps = conn.prepareStatement("INSERT INTO login(userid,password) values(?,?)");
-        ps.setObject(1,usertoadd);
-        ps.setObject(2,passwordtoadd);
+        ps.setObject(1, usertoadd);
+        ps.setObject(2, passwordtoadd);
         ps.executeUpdate();
         out.println("User " + usertoadd + " added.");
         conn.close();
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
         out.print(usertoadd + " userID already exists");
     }
 %>

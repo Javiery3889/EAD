@@ -14,17 +14,26 @@
 <body>
 <%
     String usertodelete = request.getParameter("userid");
-    try{
-        String connURL = "jdbc:mysql://localhost:3306/db1?user=root&password=Dickfigures123";
-        Connection conn = DriverManager.getConnection(connURL);
+
+    String connURL = "jdbc:mysql://localhost:3306/db1?user=root&password=Dickfigures123";
+    Connection conn = DriverManager.getConnection(connURL);
+    PreparedStatement checkcol = conn.prepareStatement("select count(*) as total from login where userid = ?");
+    checkcol.setObject(1,usertodelete);
+    ResultSet rs = checkcol.executeQuery();
+    int count = 0;
+    while(rs.next()) {
+        count += rs.getInt("total");
+    }
+    if (count == 0) {
+        out.print("User " + usertodelete + " does not exists or has been deleted already");
+    }else {
         PreparedStatement ps = conn.prepareStatement("DELETE FROM login WHERE userid = ?");
-        ps.setObject(1,usertodelete);
+        ps.setObject(1, usertodelete);
         ps.executeUpdate();
         out.println(usertodelete + " has been deleted.");
-        conn.close();
-    } catch (Exception e){
-        out.println("User " + usertodelete + " does not exist or has been deleted already.");
     }
+    conn.close();
+
 %>
 </body>
 </html>

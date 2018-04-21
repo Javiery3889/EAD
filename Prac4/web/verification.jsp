@@ -5,7 +5,10 @@
   Time: 4:20 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
 <html>
 <head>
     <title>Title</title>
@@ -27,13 +30,13 @@
         while (rs.next()) {
             String id = rs.getString("userid");
             String password = rs.getString("password");
-            if(usercheck.equals(id)&&passcheck.equals(password)){
+            if (usercheck.equals(id) && passcheck.equals(password)) {
                 check = true;
             }
         }
         if (check == true) {
             response.sendRedirect("displaymembers.jsp?user=" + usercheck);
-        } else{
+        } else {
             response.sendRedirect("index.jsp?login=fail");
         }
         conn.close();

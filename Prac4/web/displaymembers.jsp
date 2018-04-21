@@ -5,28 +5,30 @@
   Time: 5:16 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" import="java.sql.*" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
 <%
-    out.print("Welcome, "+request.getParameter("user"));
+    out.print("Welcome, " + request.getParameter("user"));
 %>
 <br>
 <br>
 <table style="text-align:center;width:30%;border-collapse:collapse">
     <%
         int result;
-        for(int i = 1; i < 6; i++){
+        for (int i = 1; i < 6; i++) {
             result = i * 5;
 
     %>
 
     <tr style="border: 1px solid black">
-        <td style="text-align:center;border: 1px solid black;width:30%"><%=i+" x 5"%></td>
-        <td style="text-align: center;border: 1px solid black;width:30%"><%=result%></td>
+        <td style="text-align:center;border: 1px solid black;width:30%"><%=i + " x 5"%>
+        </td>
+        <td style="text-align: center;border: 1px solid black;width:30%"><%=result%>
+        </td>
 
     </tr>
     <%}%>
@@ -51,10 +53,12 @@
             while (rs.next()) {
                 String id = rs.getString("userid");
                 String password = rs.getString("password");
-             %>
-                <tr style="border: 1px solid black">
-                <td style="text-align:center;border: 1px solid black;width:30%"><%=id%></td>
-                <td style="text-align: center;border: 1px solid black;width:30%"><%=password%></td>
+    %>
+    <tr style="border: 1px solid black">
+        <td style="text-align:center;border: 1px solid black;width:30%"><%=id%>
+        </td>
+        <td style="text-align: center;border: 1px solid black;width:30%"><%=password%>
+        </td>
             <%}
             conn.close();
         } catch (Exception e) {
